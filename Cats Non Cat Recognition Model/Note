@@ -1,0 +1,1 @@
+Here I have hard coded the model in a separate python file (Model.py) not using the standard pre-built neural networks in tensorflow library

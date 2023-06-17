@@ -10,14 +10,9 @@ class Model:
         return w, b
     def propagate(self, w, b, X, Y):
         m = X.shape[1]
-        # forward prooagation
+        # forward propagation
         A = self.sigmoid(np.dot(w.T, X) + b)
-        # cost = np.sum(-Y * np.log(A) - (1 - Y) * np.log(1 - A)) / m
-        cost = 0
-        for i in range(m):
-            cost += -Y[0][i] * np.log(A[0][i]) - (1 - Y[0][i]) * np.log(1 - A[0][i])
-
-        cost /= m
+        cost = np.sum(-Y * np.log(A) - (1 - Y) * np.log(1 - A)) / m
 
         # Backward propagation
         dL_dw = np.dot(X, (A - Y).T) / m

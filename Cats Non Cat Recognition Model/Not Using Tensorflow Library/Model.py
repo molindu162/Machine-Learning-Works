@@ -1,5 +1,10 @@
 import numpy as np
 class Model:
+
+    def __int__(self, X):
+        self.w = np.zeros(X.shape[0])
+        self.b = 0.0
+
     def sigmoid(self, z):
         s = 1 / (1 + np.exp(-z))
         return s
@@ -35,7 +40,7 @@ class Model:
             b = b - learning_rate * dL_db
 
             if (print_cost):
-                if (i % 10 == 0):
+                if (i % 100 == 0):
                     costs.append(cost)
                     print(f"Cost at iteration {i} : {cost}")
 
@@ -51,7 +56,7 @@ class Model:
 
         return params, derivatives, costs
 
-    def predict(self, w, b, X):
+    def predict(self, X):
         A = self.sigmoid(np.dot(self.w.T, X) + self.b)
         y_prediction = (A >= 0.5) * 1
         assert (y_prediction.shape == (1, X.shape[1]))
